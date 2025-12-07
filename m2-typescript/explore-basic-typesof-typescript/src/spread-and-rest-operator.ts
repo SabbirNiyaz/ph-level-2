@@ -1,4 +1,4 @@
-// spread and rest operator
+// Spread and Rest operator
 
 const friends = ["Alice", "Bob", "Charlie"];
 
