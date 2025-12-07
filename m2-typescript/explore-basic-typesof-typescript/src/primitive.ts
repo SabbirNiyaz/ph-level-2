@@ -19,7 +19,7 @@ let x: undefined = undefined;
 let y: null = null;
 
 let z; // Implicitly has the 'any' type
-z = 12;
+z = 120;
 z = "Hello";
 z = true;
 
