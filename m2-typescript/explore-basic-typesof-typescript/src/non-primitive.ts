@@ -64,3 +64,7 @@ const user2:{
     lastName: 'Niyaz',
     isAdmin: true
 }
+
+// user2.organization = 'Another Organization'; // Error: Cannot assign to 'organization' because it is a read-only property
+
+console.log(user2);
