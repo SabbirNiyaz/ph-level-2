@@ -59,7 +59,7 @@ const user2:{
     isAdmin: boolean;
 } = {
     organization: 'Programming Hero',
-    firstName: 'Sabbir',
+    firstName: 'Niyaz',
     // middleName: 'Hossain',
     lastName: 'Niyaz',
     isAdmin: true
