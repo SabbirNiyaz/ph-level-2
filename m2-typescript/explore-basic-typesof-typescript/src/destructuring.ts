@@ -21,8 +21,18 @@ console.log(userAge); // Call by additional name (age: userAge)
 
 
 
-
-
+// -----------------------------------------------------------------
 // Array Destructuring
 
+const friends = ['Sabbir', 'Niyaz', 'Raju', 'Kamal', 'Jamal'];
 
+const [firstFriend, secondFriend, ...restFriends] = friends;
+
+console.log(firstFriend);
+console.log(secondFriend);
+console.log(restFriends); // Rest operator to collect remaining elements
+
+// -----------------------------------------------------------------
+const numbers = [10, 20, 30, 40, 50];
+const [, , , , num5] = numbers; // Skip elements using commas
+console.log(num5);
