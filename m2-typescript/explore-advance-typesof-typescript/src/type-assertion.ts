@@ -11,7 +11,7 @@ console.log(upperCase); // Output: HELLO, TYPESCRIPT!
 
 const kgToGmConverter = (input: number | string): number => {
     if (typeof input === 'number') {
-        return input * 1000;   // kg → gram
+        return input * 1000;   // kg → gram conversion
     } else {
         const value = parseInt(input);  // extracts "2" from "2 kg"
         return value * 1000;
