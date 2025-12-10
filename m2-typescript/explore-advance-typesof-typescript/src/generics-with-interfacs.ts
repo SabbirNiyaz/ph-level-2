@@ -1,3 +1,4 @@
+// Generics with interface
 
 interface Developer<T, X = null> {
     name: string;
