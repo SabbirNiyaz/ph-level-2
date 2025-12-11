@@ -10,7 +10,7 @@
 // }
 
 const userRole = {
-    Admin: "ADMIN",
+    Admin: "Admin",
     Editor: "Editor",
     Viewer: "Viewer"
 } as const; //? Add readonly property (Modifier)
