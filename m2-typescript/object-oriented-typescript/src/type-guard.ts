@@ -14,8 +14,8 @@ const add = (num1: alphaNumeric, num2: alphaNumeric) => {
 }
 
 add(5, 10); // 15
-add(5, '10');
-add('10', 10);
+add(5, '10'); // '510'
+add('10', 10); // '1010'
 
 
 // Type guard using 'in' keyword
