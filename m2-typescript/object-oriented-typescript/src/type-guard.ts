@@ -1,4 +1,4 @@
-//! Type guard using typeof and in
+//! Type guard using typeof and in keyword
 
 type alphaNumeric = number | string;
 
