@@ -2,6 +2,7 @@ const fs = require('fs');
 
 console.log('Starting to read file asynchronously...');
 
+// Asynchronous read
 fs.readFile("../data/diary.txt", "utf-8", (error, data) => {
     if (error) {
         console.error(error.message);
