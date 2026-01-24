@@ -1,0 +1,2 @@
+Today I learned how to write files in Node.js!
+ It's pretty straightforward using the fs module.
