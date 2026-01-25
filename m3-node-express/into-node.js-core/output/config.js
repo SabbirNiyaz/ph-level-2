@@ -1,3 +1,7 @@
+//todo Steps:
+//? 1. npm init -y
+//? 2. npm install dotenv
+
 require('dotenv').config();
 
 const config = {
