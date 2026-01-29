@@ -1,30 +1,28 @@
 import { Request, Response } from 'express';
-import { userServices } from "./user.service";
+import { todoServices } from "./todo.service";
 
-const createUser = async (req: Request, res: Response) => {
+const createTodo = async (req: Request, res: Response) => {
 
     try {
-        const result = await userServices.createUser(req.body);
-        // console.log(result.rows[0]);
-
+        const result = await todoServices.createTodo(req.body);
         res.status(201).json({
             message: 'Data Inserted',
             data: result.rows[0]
         })
 
     } catch (err: any) {
-        console.error('Error creating user:', err);
+        console.error('Error creating Todo:', err);
         return res.status(500).json({
             success: false,
-            message: 'Error creating user.',
+            message: 'Error creating Todo.',
             error: err.message
         })
     }
 }
 
-const getUser = async (req: Request, res: Response) => {
+const getTodo = async (req: Request, res: Response) => {
     try {
-        const result = await userServices.getUser();
+        const result = await todoServices.getTodo();
         res.status(200).json({
             success: true,
             data: result.rows
@@ -33,19 +31,19 @@ const getUser = async (req: Request, res: Response) => {
     } catch (err: any) {
         return res.status(500).json({
             success: false,
-            message: 'Error fetching users.',
+            message: 'Error fetching Todos.',
             error: err.message
         })
     }
 }
 
-const getUserById = async (req: Request, res: Response) => {
+const getTodoById = async (req: Request, res: Response) => {
     try {
-        const result = await userServices.getUserById(req.params.id as string);
+        const result = await todoServices.getTodoById(req.params.id as string);
         if (result.rows.length === 0) {
             res.status(404).json({
                 success: false,
-                message: 'User not found.'
+                message: 'Todo not found.'
             })
         } else {
             res.status(200).json({
@@ -58,21 +56,22 @@ const getUserById = async (req: Request, res: Response) => {
     } catch (err: any) {
         return res.status(500).json({
             success: false,
-            message: 'Error fetching users.',
+            message: 'Error fetching Todos.',
             error: err.message
         })
     }
 }
 
-const updateUser = async (req: Request, res: Response) => {
+const updateTodo = async (req: Request, res: Response) => {
+    const { user_id, phone, address, completed, due_date } = req.body;
     try {
-        const result = await userServices.updateUser(req.body,
+        const result = await todoServices.updateTodo(user_id, phone, address, completed, due_date,
             req.params.id as string)
 
         if (result.rows.length === 0) {
             res.status(404).json({
                 success: false,
-                message: 'User not found.'
+                message: 'Todo not found.'
             })
         } else {
             res.status(201).json({
@@ -85,24 +84,24 @@ const updateUser = async (req: Request, res: Response) => {
     } catch (err: any) {
         return res.status(500).json({
             success: false,
-            message: 'Error updating users.',
+            message: 'Error updating Todos.',
             error: err.message
         })
     }
 }
 
-const deleteUser = async (req: Request, res: Response) => {
+const deleteTodo = async (req: Request, res: Response) => {
     try {
-        const result = await userServices.deleteUser(req.params.id as string)
+        const result = await todoServices.deleteTodo(req.params.id as string)
         if (result.rowCount === 0) {
             res.status(404).json({
                 success: false,
-                message: 'User not found.'
+                message: 'Todo not found.'
             })
         } else {
             res.status(200).json({
                 success: true,
-                message: 'User deleted successfully.',
+                message: 'Todo deleted successfully.',
                 data: null
             })
         }
@@ -110,16 +109,16 @@ const deleteUser = async (req: Request, res: Response) => {
     } catch (err: any) {
         return res.status(500).json({
             success: false,
-            message: 'Error deleting users.',
+            message: 'Error deleting Todos.',
             error: err.message
         })
     }
 }
 
-export const userController = {
-    createUser,
-    getUser,
-    getUserById,
-    updateUser,
-    deleteUser
+export const todoController = {
+    createTodo,
+    getTodo,
+    getTodoById,
+    updateTodo,
+    deleteTodo
 };

@@ -3,6 +3,8 @@ import config  from './config/index.js';
 import express, { NextFunction, Request, Response } from 'express'
 import logger from './middleware/logger.js';
 import { userRoutes } from './modules/user/user.routes.js';
+import { todoRoutes } from './modules/todo/todo.routes.js';
+import { authRouters } from './modules/auth/auth.routes.js';
 
 
 const app = express()
@@ -24,34 +26,12 @@ app.get('/', logger, (req: Request, res: Response) => {
 //! users CRUD Operations
 app.use('/users', userRoutes)
 
-
 //! todos CRUD Operations
-//todo: Create Todo
-app.post('/todos/create', async (req: Request, res: Response) => {
-    // console.log(req.body);
-    const { user_id, phone, address, completed, due_date } = req.body;
+app.use('/todos', todoRoutes)
 
-    try {
-        const result = await pool.query(
-            `INSERT INTO todos (user_id, phone, address, completed, due_date) 
-            VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-            [user_id, phone, address, completed, due_date]
-        )
+//! auth routes
+app.use('/auth', authRouters)
 
-        res.status(201).json({
-            message: 'Data Inserted',
-            data: result.rows[0]
-        })
-
-    } catch (err: any) {
-        console.error('Error creating todo:', err);
-        return res.status(500).json({
-            success: false,
-            message: 'Error creating todo.',
-            error: err.message
-        })
-    }
-})
 
 //todo: Not Found Route Handler
 app.use((req: Request, res: Response) => {
